@@ -5,8 +5,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
-@Entity
 
+@Entity
 public class Paciente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,6 +16,9 @@ public class Paciente {
     private Double peso;
     private Integer altura;
     private String genero;
+    private Double atividadeFisica;
+    private Double TMB;
+    private Double VET;
 
     public Long getId() {
         return id;
@@ -23,14 +26,6 @@ public class Paciente {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Double getAtividadeFisica() {
-        return atividadeFisica;
-    }
-
-    public void setAtividadeFisica(Double atividadeFisica) {
-        this.atividadeFisica = atividadeFisica;
     }
 
     public String getNome() {
@@ -73,6 +68,14 @@ public class Paciente {
         this.genero = genero;
     }
 
+    public Double getAtividadeFisica() {
+        return atividadeFisica;
+    }
+
+    public void setAtividadeFisica(Double atividadeFisica) {
+        this.atividadeFisica = atividadeFisica;
+    }
+
     public Double getTMB() {
         return TMB;
     }
@@ -88,8 +91,4 @@ public class Paciente {
     public void setVET(Double VET) {
         this.VET = VET;
     }
-
-    private Double atividadeFisica;
-    private Double TMB;
-    private Double VET;
 }

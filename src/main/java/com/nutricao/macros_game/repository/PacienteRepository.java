@@ -6,5 +6,4 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface PacienteRepository extends JpaRepository<Paciente, Long> {
-    // Métodos de busca customizados podem ser adicionados aqui
 }

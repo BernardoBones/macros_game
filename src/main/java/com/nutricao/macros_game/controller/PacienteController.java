@@ -56,14 +56,4 @@ public class PacienteController {
         Iterable<Paciente> pacientes = pacienteService.listarTodosPacientes();
         return ResponseEntity.ok(pacientes);
     }
-
-    //@GetMapping("/{id}/calcularTMB")
-    //public ResponseEntity<String> calcularTMB(@PathVariable Long id) {
-        //try {
-          //  Double TMB = pacienteService.calcularTMB(id);
-           // return ResponseEntity.ok(TMB.toString());
-       // } catch (RuntimeException e){
-        //    return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-    //    }
-   // }
 }
