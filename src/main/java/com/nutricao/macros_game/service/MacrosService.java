@@ -59,7 +59,6 @@ public class MacrosService {
      * @return Os macros do paciente ou uma mensagem de erro.
      */
     public Optional<Macros> buscarMacrosPorPacienteId(Long pacienteId) {
-        System.out.println(pacienteId);
         return macrosRepository.findByPacienteId(pacienteId);
     }
 }

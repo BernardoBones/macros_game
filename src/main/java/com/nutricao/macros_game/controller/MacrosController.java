@@ -19,8 +19,9 @@ public class MacrosController {
      * @param pacienteId O ID do paciente.
      * @return Resposta com os macros ou uma mensagem de erro.
      */
-    @GetMapping("/macros/{pacienteId}")
+    @GetMapping("/{pacienteId}")
     public ResponseEntity<Macros> buscarMacrosPorPacienteId(@PathVariable Long pacienteId) {
+        System.out.println(pacienteId);
         Optional<Macros> macros = macrosService.buscarMacrosPorPacienteId(pacienteId);
 
         return macros.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());

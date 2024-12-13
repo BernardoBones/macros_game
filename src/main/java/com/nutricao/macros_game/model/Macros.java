@@ -2,6 +2,10 @@ package com.nutricao.macros_game.model;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDateTime;
+
+import java.time.LocalDateTime;
+
 @Entity
 @Table(name = "macros")
 public class Macros {
@@ -15,40 +19,55 @@ public class Macros {
     private Paciente paciente;
 
     @JoinColumn(name = "proteinaMinGramas", nullable = false)
-    private double proteinaMinGramas;
+    private Double proteinaMinGramas;
 
     @JoinColumn(name = "proteinaMaxGramas", nullable = false)
-    private double proteinaMaxGramas;
+    private Double proteinaMaxGramas;
 
     @JoinColumn(name = "carboidratoMinGramas", nullable = false)
-    private double carboidratoMinGramas;
+    private Double carboidratoMinGramas;
 
     @JoinColumn(name = "carboidratoMaxGramas", nullable = false)
-    private double carboidratoMaxGramas;
+    private Double carboidratoMaxGramas;
 
     @JoinColumn(name = "lipidioMinGramas", nullable = false)
-    private double lipidioMinGramas;
+    private Double lipidioMinGramas;
 
     @JoinColumn(name = "lipidioMaxGramas", nullable = false)
-    private double lipidioMaxGramas;
+    private Double lipidioMaxGramas;
 
     @JoinColumn(name = "proteinaMinKcal", nullable = false)
-    private double proteinaMinKcal;
+    private Double proteinaMinKcal;
 
     @JoinColumn(name = "proteinaMaxKcal", nullable = false)
-    private double proteinaMaxKcal;
+    private Double proteinaMaxKcal;
 
     @JoinColumn(name = "carboidratoMinKcal", nullable = false)
-    private double carboidratoMinKcal;
+    private Double carboidratoMinKcal;
 
     @JoinColumn(name = "carboidratoMaxKcal", nullable = false)
-    private double carboidratoMaxKcal;
+    private Double carboidratoMaxKcal;
 
     @JoinColumn(name = "lipidioMinKcal", nullable = false)
-    private double lipidioMinKcal;
+    private Double lipidioMinKcal;
 
     @JoinColumn(name = "lipidioMaxKcal", nullable = false)
-    private double lipidioMaxKcal;
+    private Double lipidioMaxKcal;
+
+    @JoinColumn(name = "dataCriacao", nullable = false)
+    private java.time.LocalDateTime dataCriacao;
+
+    public Macros() {
+        this.dataCriacao = java.time.LocalDateTime.now();
+    }
+
+    public LocalDateTime getDataCriacao() {
+        return dataCriacao;
+    }
+
+    public void setDataCriacao(LocalDateTime dataCriacao) {
+        this.dataCriacao = dataCriacao;
+    }
 
     public Long getId() {
         return id;
@@ -66,99 +85,99 @@ public class Macros {
         this.paciente = paciente;
     }
 
-    public double getProteinaMinGramas() {
+    public Double getProteinaMinGramas() {
         return proteinaMinGramas;
     }
 
-    public void setProteinaMinGramas(double proteinaMinGramas) {
+    public void setProteinaMinGramas(Double proteinaMinGramas) {
         this.proteinaMinGramas = proteinaMinGramas;
     }
 
-    public double getProteinaMaxGramas() {
+    public Double getProteinaMaxGramas() {
         return proteinaMaxGramas;
     }
 
-    public void setProteinaMaxGramas(double proteinaMaxGramas) {
+    public void setProteinaMaxGramas(Double proteinaMaxGramas) {
         this.proteinaMaxGramas = proteinaMaxGramas;
     }
 
-    public double getCarboidratoMinGramas() {
+    public Double getCarboidratoMinGramas() {
         return carboidratoMinGramas;
     }
 
-    public void setCarboidratoMinGramas(double carboidratoMinGramas) {
+    public void setCarboidratoMinGramas(Double carboidratoMinGramas) {
         this.carboidratoMinGramas = carboidratoMinGramas;
     }
 
-    public double getCarboidratoMaxGramas() {
+    public Double getCarboidratoMaxGramas() {
         return carboidratoMaxGramas;
     }
 
-    public void setCarboidratoMaxGramas(double carboidratoMaxGramas) {
+    public void setCarboidratoMaxGramas(Double carboidratoMaxGramas) {
         this.carboidratoMaxGramas = carboidratoMaxGramas;
     }
 
-    public double getLipidioMinGramas() {
+    public Double getLipidioMinGramas() {
         return lipidioMinGramas;
     }
 
-    public void setLipidioMinGramas(double lipidioMinGramas) {
+    public void setLipidioMinGramas(Double lipidioMinGramas) {
         this.lipidioMinGramas = lipidioMinGramas;
     }
 
-    public double getLipidioMaxGramas() {
+    public Double getLipidioMaxGramas() {
         return lipidioMaxGramas;
     }
 
-    public void setLipidioMaxGramas(double lipidioMaxGramas) {
+    public void setLipidioMaxGramas(Double lipidioMaxGramas) {
         this.lipidioMaxGramas = lipidioMaxGramas;
     }
 
-    public double getProteinaMinKcal() {
+    public Double getProteinaMinKcal() {
         return proteinaMinKcal;
     }
 
-    public void setProteinaMinKcal(double proteinaMinKcal) {
+    public void setProteinaMinKcal(Double proteinaMinKcal) {
         this.proteinaMinKcal = proteinaMinKcal;
     }
 
-    public double getProteinaMaxKcal() {
+    public Double getProteinaMaxKcal() {
         return proteinaMaxKcal;
     }
 
-    public void setProteinaMaxKcal(double proteinaMaxKcal) {
+    public void setProteinaMaxKcal(Double proteinaMaxKcal) {
         this.proteinaMaxKcal = proteinaMaxKcal;
     }
 
-    public double getCarboidratoMinKcal() {
+    public Double getCarboidratoMinKcal() {
         return carboidratoMinKcal;
     }
 
-    public void setCarboidratoMinKcal(double carboidratoMinKcal) {
+    public void setCarboidratoMinKcal(Double carboidratoMinKcal) {
         this.carboidratoMinKcal = carboidratoMinKcal;
     }
 
-    public double getCarboidratoMaxKcal() {
+    public Double getCarboidratoMaxKcal() {
         return carboidratoMaxKcal;
     }
 
-    public void setCarboidratoMaxKcal(double carboidratoMaxKcal) {
+    public void setCarboidratoMaxKcal(Double carboidratoMaxKcal) {
         this.carboidratoMaxKcal = carboidratoMaxKcal;
     }
 
-    public double getLipidioMinKcal() {
+    public Double getLipidioMinKcal() {
         return lipidioMinKcal;
     }
 
-    public void setLipidioMinKcal(double lipidioMinKcal) {
+    public void setLipidioMinKcal(Double lipidioMinKcal) {
         this.lipidioMinKcal = lipidioMinKcal;
     }
 
-    public double getLipidioMaxKcal() {
+    public Double getLipidioMaxKcal() {
         return lipidioMaxKcal;
     }
 
-    public void setLipidioMaxKcal(double lipidioMaxKcal) {
+    public void setLipidioMaxKcal(Double lipidioMaxKcal) {
         this.lipidioMaxKcal = lipidioMaxKcal;
     }
 }

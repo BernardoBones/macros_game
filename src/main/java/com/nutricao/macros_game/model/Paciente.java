@@ -1,24 +1,53 @@
 package com.nutricao.macros_game.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
+import java.time.LocalDateTime;
 
 @Entity
 public class Paciente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(name = "nome", nullable = true, length = 50)
     private String nome;
+
+    @Column(name = "idade", nullable = false)
     private Integer idade;
+
+    @Column(name = "peso", nullable = false)
     private Double peso;
+
+    @Column(name = "altura", nullable = false)
     private Integer altura;
+
+    @Column(name = "genero", nullable = false)
     private String genero;
+
+    @Column(name = "atividadeFisica", nullable = false)
     private Double atividadeFisica;
+
+    @Column(name = "TMB", nullable = false)
     private Double TMB;
+
+    @Column(name = "VET", nullable = false)
     private Double VET;
+
+    @Column(name = "dataCriacao", nullable = false)
+    private java.time.LocalDateTime dataCriacao;
+
+    public Paciente() {
+        this.dataCriacao = java.time.LocalDateTime.now();
+    }
+
+    public LocalDateTime getDataCriacao() {
+        return dataCriacao;
+    }
+
+    public void setDataCriacao(LocalDateTime dataCriacao) {
+        this.dataCriacao = dataCriacao;
+    }
 
     public Long getId() {
         return id;
