@@ -2,8 +2,6 @@ package com.nutricao.macros_game.model;
 
 import jakarta.persistence.*;
 
-import java.time.LocalDateTime;
-
 @Entity
 @Table(name = "macros_input")
 public class MacrosInput {
@@ -11,6 +9,10 @@ public class MacrosInput {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @ManyToOne
+    @JoinColumn(name = "paciente_id", nullable = false)
+    private Paciente paciente;
 
     @Column(name = "proteina", nullable = false)
     private Double proteina;
@@ -21,14 +23,17 @@ public class MacrosInput {
     @Column(name = "lipidio", nullable = false)
     private Double lipidio;
 
-    @Column(name = "caloriasTotais", nullable = false)
-    private Double caloriasTotais;
+    @Column(name = "kcalTotais", nullable = false)
+    private Double kcalTotais;
 
-    @Column(name = "dataCriacao", nullable = false)
+    @Column(name = "flagKcal", nullable = false)
+    private Boolean flagKcal;
+
+    @Column(name = "data_criacao", nullable = false)
     private java.time.LocalDateTime dataCriacao;
 
     public MacrosInput() {
-        this.dataCriacao = java.time.LocalDateTime.now(); // Preenche a data automaticamente
+        this.dataCriacao = java.time.LocalDateTime.now();
     }
 
     public Long getId() {
@@ -37,6 +42,22 @@ public class MacrosInput {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Boolean getFlagKcal() {
+        return flagKcal;
+    }
+
+    public void setFlagKcal(Boolean flagKcal) {
+        this.flagKcal = flagKcal;
+    }
+
+    public Paciente getPaciente() {
+        return paciente;
+    }
+
+    public void setPaciente(Paciente paciente) {
+        this.paciente = paciente;
     }
 
     public Double getProteina() {
@@ -63,19 +84,19 @@ public class MacrosInput {
         this.lipidio = lipidio;
     }
 
-    public Double getCaloriasTotais() {
-        return caloriasTotais;
+    public Double getKcalTotais() {
+        return kcalTotais;
     }
 
-    public void setCaloriasTotais(Double caloriasTotais) {
-        this.caloriasTotais = caloriasTotais;
+    public void setKcalTotais(Double kcalTotais) {
+        this.kcalTotais = kcalTotais;
     }
 
-    public LocalDateTime getDataCriacao() {
+    public java.time.LocalDateTime getDataCriacao() {
         return dataCriacao;
     }
 
-    public void setDataCriacao(LocalDateTime dataCriacao) {
+    public void setDataCriacao(java.time.LocalDateTime dataCriacao) {
         this.dataCriacao = dataCriacao;
     }
 }

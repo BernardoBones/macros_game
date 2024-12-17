@@ -30,6 +30,11 @@ public class MacrosInputController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
+    @GetMapping("/paciente/{pacienteId}")
+    public ResponseEntity<List<MacrosInput>> listarPorPaciente(@PathVariable Long pacienteId) {
+        return ResponseEntity.ok(macrosInputService.listarPorPaciente(pacienteId));
+    }
+
     @GetMapping
     public ResponseEntity<List<MacrosInput>> listarTodos() {
         return ResponseEntity.ok(macrosInputService.listarTodos());
