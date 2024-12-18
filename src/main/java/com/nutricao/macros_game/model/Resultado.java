@@ -7,6 +7,8 @@ public class Resultado {
     private Boolean adeqKcalTotais;
     private Boolean aprovado;
 
+    public Resultado() {}
+
     public Resultado(Boolean adeqProteina, Boolean adeqCarboidrato, Boolean adeqLipidio, Boolean adeqKcalTotais, Boolean aprovado) {
         this.adeqProteina = adeqProteina;
         this.adeqCarboidrato = adeqCarboidrato;

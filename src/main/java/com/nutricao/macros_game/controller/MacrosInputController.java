@@ -2,6 +2,7 @@ package com.nutricao.macros_game.controller;
 
 import com.nutricao.macros_game.model.MacrosInput;
 import com.nutricao.macros_game.service.MacrosInputService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,14 +18,14 @@ public class MacrosInputController {
         this.macrosInputService = macrosInputService;
     }
 
-    @PostMapping
-    public ResponseEntity<MacrosInput> criarInput(@RequestBody MacrosInput macrosInput) {
-        MacrosInput novoInput = macrosInputService.criarInput(macrosInput);
-        return ResponseEntity.ok(novoInput);
+    @PostMapping("/{pacienteId}")
+    public ResponseEntity<MacrosInput> criarMacrosInput(@RequestBody MacrosInput macrosInput, @PathVariable Long pacienteId) {
+        MacrosInput novoMacrosInput = macrosInputService.criarMacrosInput(macrosInput, pacienteId);
+        return ResponseEntity.status(HttpStatus.CREATED).body(novoMacrosInput);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<MacrosInput> buscarPorId(@PathVariable Long id) {
+    public ResponseEntity<MacrosInput> buscarPorMacrosInputId(@PathVariable Long id) {
         return macrosInputService.buscarPorId(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
