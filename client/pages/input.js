@@ -43,7 +43,7 @@ export default function MacrosInput(){
       // Redirecionar para a página de resultado
       setSuccessMessage("Macros salvos com sucesso! Redirecionando...");
       
-      router.push({ pathname: '/resultado', query: { inputId: inputId } });
+      router.push({ pathname: '/resultado', query: { inputId: inputId, pacienteId: pacienteId } });
     } catch (error) {
       console.error("Erro ao salvar macros:", error);
       setErrorMessage("Erro ao salvar os macros. Por favor, tente novamente.");
@@ -57,7 +57,7 @@ export default function MacrosInput(){
       {successMessage && <p style={{ color: "green" }}>{successMessage}</p>}
       <form onSubmit={handleSubmit}>
         <div style={{ marginBottom: "15px" }}>
-          <label htmlFor="proteina">Proteína (g):</label>
+          <label htmlFor="proteina">Proteína:</label>
           <input
             type="number"
             id="proteina"
@@ -68,7 +68,7 @@ export default function MacrosInput(){
           />
         </div>
         <div style={{ marginBottom: "15px" }}>
-          <label htmlFor="carboidrato">Carboidrato (g):</label>
+          <label htmlFor="carboidrato">Carboidrato:</label>
           <input
             type="number"
             id="carboidrato"
@@ -79,7 +79,7 @@ export default function MacrosInput(){
           />
         </div>
         <div style={{ marginBottom: "15px" }}>
-          <label htmlFor="lipidio">Lipídio (g):</label>
+          <label htmlFor="lipidio">Lipídio:</label>
           <input
             type="number"
             id="lipidio"

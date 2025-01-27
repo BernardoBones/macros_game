@@ -19,7 +19,6 @@ public class ResultadoService {
 
         // Aprovação depende de todas as condições serem verdadeiras
         Boolean aprovado = adeqProteina && adeqCarboidrato && adeqLipidio && adeqKcalTotais;
-
         return new Resultado(adeqProteina, adeqCarboidrato, adeqLipidio, adeqKcalTotais, aprovado);
     }
 

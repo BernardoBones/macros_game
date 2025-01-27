@@ -4,30 +4,33 @@ import axios from "axios";
 
 export default function Resultado(){
   const router = useRouter();
-  const { inputId } = router.query; // Obter o ID do input da URL
+  const { inputId, pacienteId } = router.query;
   const [resultado, setResultado] = useState(null);
   const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
     if (inputId) {
       axios
-        .get(`http://localhost:8080/resultados/${inputId}`)
-        .then((response) => {
-          setResultado(response.data);
-        })
-        .catch((error) => {
-          console.error("Erro ao buscar o resultado:", error);
-          setErrorMessage(
-            "Erro ao buscar o resultado. Verifique o ID ou tente novamente mais tarde."
-          );
-        });
+      .get(`http://localhost:8080/resultados/${inputId}`)
+      .then((response) => {
+        console.log("Resultado recebido:", response.data);
+        setResultado(response.data);
+      })
+      .catch((error) => {
+        console.error("Erro ao buscar o resultado:", error.response?.data || error.message);
+        setErrorMessage(
+          error.response?.data?.message ||
+          "Erro ao buscar o resultado. Verifique o ID ou tente novamente mais tarde."
+        );
+      });
+    
     }
   }, [inputId]);
 
   if (errorMessage) {
     return <p style={{ color: "red" }}>{errorMessage}</p>;
   }
-
+  
   if (!resultado) {
     return <p>Carregando o resultado...</p>;
   }
@@ -62,7 +65,7 @@ export default function Resultado(){
       )}
       <button
         style={{ marginTop: "20px" }}
-        onClick={() => router.push("/input")}
+        onClick={() => router.push({ pathname: "/input", query: { pacienteId: pacienteId } })}
       >
         Voltar para o input dos macros
       </button>

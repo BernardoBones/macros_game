@@ -75,6 +75,17 @@ export default function InputPage() {
     }
   };
 
+  const converterValorAtividadeFisica = (valor) => {
+    switch (valor){
+      case 1:
+        return 'Sedentário';
+      case 1.5:
+        return 'Moderado';
+      case 2:
+        return 'Intenso'
+      }
+  };
+
   return (
     <div>
       <h1>Informações do Paciente</h1>
@@ -158,12 +169,14 @@ export default function InputPage() {
       {pacientes.length > 0 && (
         <ul>
           {pacientes.map((paciente) => (
-            <li key={paciente.id}>
-              {paciente.nome} ({paciente.id})
-              <button onClick={() => selecionarPacienteExistente(paciente.id)}>
-                Selecionar
-              </button>
-            </li>
+            <div>
+              <ul key={paciente.id}>
+                Nome: {paciente.nome} Idade: {paciente.idade} Altura: {paciente.altura} Peso: {paciente.peso} Gênero: {paciente.genero} Atividade Física: {converterValorAtividadeFisica(paciente.atividadeFisica)} 
+                <button onClick={() => selecionarPacienteExistente(paciente.id)}>
+                  Selecionar
+                </button>
+              </ul>
+            </div>
           ))}
         </ul>
       )}

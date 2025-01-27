@@ -1,7 +1,30 @@
 package com.nutricao.macros_game.model;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Resultado {
     private Boolean adeqProteina;
+
+    public Boolean getAdeqProteina() {
+        return adeqProteina;
+    }
+
+    public Boolean getAdeqCarboidrato() {
+        return adeqCarboidrato;
+    }
+
+    public Boolean getAdeqLipidio() {
+        return adeqLipidio;
+    }
+
+    public Boolean getAdeqKcalTotais() {
+        return adeqKcalTotais;
+    }
+
+    public Boolean getAprovado() {
+        return aprovado;
+    }
+
     private Boolean adeqCarboidrato;
     private Boolean adeqLipidio;
     private Boolean adeqKcalTotais;
@@ -15,33 +38,5 @@ public class Resultado {
         this.adeqLipidio = adeqLipidio;
         this.adeqKcalTotais = adeqKcalTotais;
         this.aprovado = aprovado;
-    }
-
-    public Boolean getAprovado() {
-        return aprovado;
-    }
-
-    @Override
-    public String toString() {
-        if (aprovado) {
-            return "Parabéns! Você acertou todos os macros e calorias.";
-        }
-
-        StringBuilder erros = new StringBuilder("Você não foi aprovado. Veja onde errou:\n");
-
-        if (!adeqProteina) {
-            erros.append("- Proteína: Fora da faixa esperada.\n");
-        }
-        if (!adeqCarboidrato) {
-            erros.append("- Carboidrato: Fora da faixa esperada.\n");
-        }
-        if (!adeqLipidio) {
-            erros.append("- Lipídio: Fora da faixa esperada.\n");
-        }
-        if (!adeqKcalTotais) {
-            erros.append("- Calorias Totais: Fora da faixa de 95% a 105%.\n");
-        }
-
-        return erros.toString();
     }
 }
