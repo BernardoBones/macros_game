@@ -2,79 +2,52 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import axios from "axios";
 
-export default function Resultado(){
+export default function Resultado() {
   const router = useRouter();
   const { inputId, pacienteId } = router.query;
-  const [resultado, setResultado] = useState(null);
   const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
     if (inputId) {
       axios
-      .get(`http://localhost:8080/resultados/${inputId}`)
-      .then((response) => {
-        console.log("Resultado recebido:", response.data);
-        setResultado(response.data);
-      })
-      .catch((error) => {
-        console.error("Erro ao buscar o resultado:", error.response?.data || error.message);
-        setErrorMessage(
-          error.response?.data?.message ||
-          "Erro ao buscar o resultado. Verifique o ID ou tente novamente mais tarde."
-        );
-      });
-    
+        .get(`http://localhost:8080/resultados/${inputId}`)
+        .then((response) => {
+          const data = response.data;
+
+          if (data.aprovado) {
+            router.replace("/aprovado");
+          } else {
+            const erros = [];
+
+            if (!data.adequacaoProteina) erros.push("Proteína: Fora da faixa esperada.");
+            if (!data.adequacaoCarboidrato) erros.push("Carboidrato: Fora da faixa esperada.");
+            if (!data.adequacaoLipidio) erros.push("Lipídio: Fora da faixa esperada.");
+            if (!data.adequacaoCaloriasTotais) erros.push("Calorias Totais: Fora da faixa de 95% a 105%.");
+            router.replace({
+              pathname: "/reprovado",
+              query: {
+                erros: encodeURIComponent(JSON.stringify(erros)),
+                pacienteId, // opcional se quiser usar lá também
+              },
+            });
+          }
+        })
+        .catch((error) => {
+          console.error("Erro ao buscar o resultado:", error);
+          setErrorMessage(
+            error.response?.data?.message || "Erro ao buscar o resultado."
+          );
+        });
     }
   }, [inputId]);
 
   if (errorMessage) {
-    return <p style={{ color: "red" }}>{errorMessage}</p>;
-  }
-  
-  if (!resultado) {
-    return <p>Carregando o resultado...</p>;
+    return <p className="text-red-600 text-center mt-10">{errorMessage}</p>;
   }
 
   return (
-    <div style={{ maxWidth: "600px", margin: "0 auto", padding: "20px" }}>
-      <h1>Resultado</h1>
-      {resultado.aprovado ? (
-        <p style={{ color: "green", fontWeight: "bold" }}>
-          Parabéns! Você acertou todos os macros e calorias.
-        </p>
-      ) : (
-        <div>
-          <p style={{ color: "red", fontWeight: "bold" }}>
-            Você não foi aprovado. Veja onde errou:
-          </p>
-          <ul>
-            {!resultado.adequacaoProteina && (
-              <li>- Proteína: Fora da faixa esperada.</li>
-            )}
-            {!resultado.adequacaoCarboidrato && (
-              <li>- Carboidrato: Fora da faixa esperada.</li>
-            )}
-            {!resultado.adequacaoLipidio && (
-              <li>- Lipídio: Fora da faixa esperada.</li>
-            )}
-            {!resultado.adequacaoCaloriasTotais && (
-              <li>- Calorias Totais: Fora da faixa de 95% a 105%.</li>
-            )}
-          </ul>
-        </div>
-      )}
-      <button
-        style={{ marginTop: "20px" }}
-        onClick={() => router.push({ pathname: "/input", query: { pacienteId: pacienteId } })}
-      >
-        Voltar para o input dos macros
-      </button>
-      <button
-        style={{ marginTop: "20px" }}
-        onClick={() => router.push("/paciente")}
-      >
-        Voltar para o input das informações do paciente
-      </button>
+    <div className="flex justify-center items-center h-screen">
+      <p className="text-lg text-gray-600">Carregando o resultado...</p>
     </div>
   );
-};
+}
