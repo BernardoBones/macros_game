@@ -8,6 +8,7 @@ O cálculo é baseado na equação de Harris-Benedict que calcula a Taxa Metabó
 
 Referências:
 https://pmc.ncbi.nlm.nih.gov/articles/PMC1091498/
+
 https://openknowledge.fao.org/server/api/core/bitstreams/65875dc7-f8c5-4a70-b0e1-f429793860ae/content
 
 
