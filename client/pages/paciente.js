@@ -153,9 +153,11 @@ export default function InputPage() {
             className="border-2 border-green-900 rounded-full px-4 py-1 w-60"
           >
             <option value="">Selecione</option>
-            <option value="1">Sedentário</option>
-            <option value="1.5">Moderado</option>
-            <option value="2">Intenso</option>
+            <option value="1.2">Sedentário</option>
+            <option value="1.375">Levemente ativo</option>
+            <option value="1.55">Moderadamente ativo</option>
+            <option value="1.725">Muito ativo</option>
+            <option value="1.9">Extremamente ativo/Atleta</option>
           </select>
         </label>
 
